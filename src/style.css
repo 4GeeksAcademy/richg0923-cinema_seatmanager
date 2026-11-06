@@ -1,1 +1,62 @@
 @import "tailwindcss";
+
+:root {
+	font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+body { min-width: 320px; margin: 0; }
+button { font: inherit; }
+
+.screen-arch {
+	width: min(390px, 82%);
+	height: 22px;
+	border-top: 3px solid #bdc9c3;
+	border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+	box-shadow: 0 -7px 14px -12px #789286;
+}
+
+.seat-map-wrap { width: min(100%, 560px); margin: 0 auto; }
+.column-labels, .seat-row {
+	display: grid;
+	grid-template-columns: 28px repeat(10, minmax(0, 1fr));
+	align-items: center;
+	gap: clamp(4px, 1vw, 9px);
+}
+.column-labels { margin-bottom: 10px; color: #929b97; font-size: 9px; text-align: center; }
+.seat-row { margin-bottom: 9px; }
+.row-label { color: #89948e; font-size: 9px; font-weight: 700; }
+.seat-button {
+	width: 100%;
+	aspect-ratio: 1.12;
+	min-width: 0;
+	padding: 0;
+	border: 1px solid;
+	border-radius: 4px 4px 7px 7px;
+	cursor: pointer;
+	font-size: clamp(8px, 1vw, 10px);
+	font-weight: 700;
+	transition: background-color 140ms ease, color 140ms ease, transform 140ms ease;
+}
+.seat-button:hover { transform: translateY(-2px); }
+.seat-button:focus-visible { outline: 3px solid #f3a18e; outline-offset: 2px; }
+.seat-available { border-color: #d3e2d9; color: #2f7864; background: #e8f2ed; }
+.seat-available:hover { background: #d8e9df; }
+.seat-occupied { border-color: #dc826e; color: #fff; background: #df7057; }
+.seat-suggested { border: 2px solid #28483d; color: #fff; background: #43856e; }
+.legend-seat { width: 12px; height: 12px; display: inline-block; border: 1px solid; border-radius: 3px 3px 5px 5px; }
+.legend-available { border-color: #d3e2d9; background: #e8f2ed; }
+.legend-occupied { border-color: #df7057; background: #df7057; }
+.legend-suggested { border-color: #43856e; background: #43856e; }
+
+@media (max-width: 480px) {
+	.column-labels, .seat-row { grid-template-columns: 23px repeat(10, minmax(0, 1fr)); gap: 4px; }
+	.seat-row { margin-bottom: 7px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after { transition-duration: .01ms !important; }
+}
